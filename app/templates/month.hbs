@@ -43,13 +43,13 @@
           </tr>
         </thead>
         <tbody>
-            {{#each week in weeks}}
+          {{#each week in weeks}}
             <tr>
-              {{#each weekDay in week}}
-                {{view App.DayView contentBinding="weekDay"}}
+              {{#each day in week}}
+                {{render "day" day}}
               {{/each}}
             </tr>
-            {{/each}}
+          {{/each}}
         </tbody>
       </table>
     </div>

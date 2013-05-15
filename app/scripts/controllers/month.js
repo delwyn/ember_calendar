@@ -1,5 +1,4 @@
 App.MonthController = Ember.Controller.extend({
-
   weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
 
   title: function() {

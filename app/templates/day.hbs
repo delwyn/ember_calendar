@@ -1,7 +1,7 @@
 <div {{ bindAttr class=weekDay.dateStr }}>
-  <div class='day'>{{ weekDay.day }}</div>
+  <div class='day'>{{ dayOfMonth }}</div>
 
-  {{#each event in weekDay.firstEvents}}
+  {{#each event in events}}
     {{view App.EventView contentBinding="event"}}
   {{/each}}
 
@@ -21,4 +21,5 @@
       </a>
     </div>
   {{/if}}
+
 </div>

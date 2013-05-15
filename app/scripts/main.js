@@ -39,20 +39,4 @@ DragNDrop.Droppable = Ember.Mixin.create({
   drop: DragNDrop.cancel
 });
 
-
-App.Day = Ember.Object.extend({
-    date: null,
-    day: function() {
-      return this.get('date').date();
-    }.property('date')
-})
-
-
-// App.DayController = Ember.Object.extend({
-//   date: null,
-//   day: function() {
-//     return 'xxx';
-//   }.property('date')
-// });
-
 // })(this);
