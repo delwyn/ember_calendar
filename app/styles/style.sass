@@ -1,0 +1,67 @@
+$iconSpritePath: "../images/glyphicons-halflings.png"
+$iconWhiteSpritePath: "../images/glyphicons-halflings-white.png"
+
+@import 'sass-bootstrap/lib/bootstrap'
+
+[draggable], [draggable] a
+  cursor: pointer
+  -moz-user-select: none
+  -khtml-user-select: none
+  -webkit-user-select: none
+  user-select: none
+
+.btn-tiny
+  padding: 1px 4px
+  font-size: 10px
+  line-height: 15px
+
+.calendar
+  font-size: 11px
+
+  .table
+    td, th
+      padding: 4px 8px
+
+  .navigation-buttons
+    padding-top: 20px
+
+  h2
+    font-size: 16px
+
+  th
+    width: 14.28%
+    text-align: center
+
+  i
+    font-size: 10px
+
+  a
+    &:link, &:visited, &:active, &:hover
+      color: white
+      text-decoration: none
+
+  .date
+    height: 85px
+
+  .day
+    color: grey
+    text-align: right
+
+  .cal-event
+    padding-left: 2px
+    margin-bottom: 1px
+    color: white
+    background: #36c
+    @include border-radius(3px)
+
+  .is-today
+    background-color: rgba(255, 255, 224, 0.65)
+
+  .is-weekend
+    background-color: rgba(248, 248, 248, 0.65)
+
+  .dropTarget
+    background-color: rgba(242, 249, 255, 0.65)
+
+  .toggle-buttons
+    margin-top: 5px

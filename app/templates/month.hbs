@@ -1,0 +1,58 @@
+<div class='calendar span12'>
+  <header>
+    <div class="span4">
+      <nav>
+        <div class="btn-toolbar navigation-buttons">
+          <div class="btn-group">
+            <button {{action "previousMonth"}} class="btn btn-mini"><i class="icon-arrow-left" ></i></button>
+            <button {{action "nextMonth"}}     class="btn btn-mini"><i class="icon-arrow-right"></i></button>
+          </div>
+          <button {{action "today"}}class="btn btn-mini"><i class='icon-calendar'></i> Today</button>
+          <button {{action "export"}}class="btn btn-mini"><i class='icon-calendar'></i> Export</button>
+        </div>
+      </nav>
+    </div>
+
+    <div class="span8 center">
+      <h2>{{ title }}</h2>
+    </div>
+  </header>
+
+  <section>
+    <div class="span12">
+      <ul class="inline">
+      {{#each eventTypes}}
+        <li>
+        <label class='checkbox inline'>
+          {{#view App.EventTypeFilterCheckbox contentBinding="this" checked="true"}} {{ name }} {{/view}}
+        </label>
+      </li>
+      {{/each}}
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="span12">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            {{#each day in weekdays}}
+              <th>{{ day }}</th>
+            {{/each}}
+          </tr>
+        </thead>
+        <tbody>
+            {{#each week in weeks}}
+            <tr>
+              {{#each weekDay in week}}
+                {{view App.DayView contentBinding="weekDay"}}
+              {{/each}}
+            </tr>
+            {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</div>
