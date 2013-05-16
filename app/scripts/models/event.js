@@ -1,3 +1,4 @@
+/*global Event */
 App.Event = DS.Model.extend({
   summary: DS.attr('string'),
   description: DS.attr('string'),
@@ -12,11 +13,11 @@ App.Event = DS.Model.extend({
   //   readOnly: true
   // }),
   // eventType: DS.belongsTo('App.EventType'),
-  date: (function() {
+  date: function() {
     if (this.get('startsAt')) {
       return moment(this.get('startsAt')).format('YYYY-MM-DD');
     }
-  }).property('startsAt'),
+  }.property('startsAt')
   // icon: (function() {
   //   if (this.get('important')) {
   //     return "<i class='icon-flag icon-white'></i>";
@@ -34,8 +35,6 @@ App.Event = DS.Model.extend({
   //   return this.store.commit();
   // }
 });
-
-
 
 App.Event.FIXTURES = [
     {id: 1, summary: 'Event A', startsAt: new Date() },

@@ -1,8 +1,8 @@
 App.EventView = Em.View.extend(DragNDrop.Dragable, {
   classNames: ['cal-event'],
   attributeBindings: ['style'],
-  templateName: 'event',
-  
+  templateName: 'event'
+
   // draggable: (function() {
   //   if (App.currentUser.get('internal')) {
   //     return 'true';
@@ -10,11 +10,11 @@ App.EventView = Em.View.extend(DragNDrop.Dragable, {
   //     return 'false';
   //   }
   // }).property(),
-  
+
   // click: function() {
   //   return window.location.href = this.content.get('url') + '?sender=' + window.location.pathname;
   // },
-  
+
   // style: (function() {
   //   var color;
   //   color = this.get('content').get('color');

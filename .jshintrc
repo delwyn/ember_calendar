@@ -13,5 +13,12 @@
     "undef": true,
     "strict": false,
     "trailing": true,
-    "smarttabs": true
+    "smarttabs": true,
+    "globals": {
+        "Ember": false,
+        "Em": false,
+        "DS": false,
+        "App": false,
+        "moment": false
+    }
 }

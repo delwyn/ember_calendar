@@ -3,7 +3,7 @@ App.Router.reopen({
 });
 
 App.Router.map(function() {
-  this.resource('month', { path: 'month/:date' })
+  this.resource('month', { path: 'month/:date' });
 });
 
 App.MonthRoute = Ember.Route.extend({

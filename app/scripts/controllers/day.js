@@ -12,7 +12,7 @@ App.DayController = Ember.Object.extend({
     events = events.filter(function(item, index) {
       return item.get('date') === date;
     });
-  
+
     return events;
   }.property('monthEvents.@each'),
 

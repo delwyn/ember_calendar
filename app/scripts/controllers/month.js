@@ -2,7 +2,7 @@ App.MonthController = Ember.Controller.extend({
   weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
 
   title: function() {
-    return moment(this.date).format('MMMM YYYY')
+    return moment(this.date).format('MMMM YYYY');
   }.property('date'),
 
   days: function() {

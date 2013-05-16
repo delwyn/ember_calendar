@@ -3,7 +3,7 @@ App.DayView = Em.View.extend(DragNDrop.Droppable, {
   classNames: ['date'],
   classNameBindings: ['isToday', 'isWeekend'],
   templateName: 'day',
-  
+
   dateBinding: 'controller.model.date',
 
   isToday: function() {
@@ -12,7 +12,7 @@ App.DayView = Em.View.extend(DragNDrop.Droppable, {
 
   isWeekend: function() {
     return this.get('date') && this.get('date').day() % 6 === 0;
-  }.property('date'),
+  }.property('date')
 
   // dragEnter: function(e) {
   //   var el;
@@ -22,7 +22,7 @@ App.DayView = Em.View.extend(DragNDrop.Droppable, {
   //     return el.addClass('dropTarget');
   //   }
   // },
-  
+
   // drop: function(e) {
   //   var date, event, view, viewId;
   //   $('td.date.dropTarget').removeClass('dropTarget');

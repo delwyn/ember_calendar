@@ -1,13 +1,13 @@
-/*global Ember */
+/*global DragNDrop */
 
-// (function (window) {
+(function (window) {
 
 Array.prototype.inGroupsOf = function(groupSize, func) {
   var array = this;
   var groups = [];
 
   for(var i=0; i<array.length; i += groupSize) {
-    group = array.slice(i, i + groupSize)
+    var group = array.slice(i, i + groupSize);
     groups.push(group);
 
     if (typeof func === 'function') {
@@ -16,9 +16,9 @@ Array.prototype.inGroupsOf = function(groupSize, func) {
 
   }
   return groups;
-}
+};
 
-DragNDrop = Ember.Namespace.create();
+window.DragNDrop = Ember.Namespace.create();
 
 DragNDrop.cancel = function(e) {
   e.preventDefault();
@@ -28,6 +28,7 @@ DragNDrop.cancel = function(e) {
 DragNDrop.Dragable = Ember.Mixin.create({
   attributeBindings: 'draggable',
   draggable: 'true',
+
   dragStart: function(e) {
     return e.dataTransfer.setData('Text', this.get('elementId'));
   }
@@ -39,4 +40,4 @@ DragNDrop.Droppable = Ember.Mixin.create({
   drop: DragNDrop.cancel
 });
 
-// })(this);
+})(this);
