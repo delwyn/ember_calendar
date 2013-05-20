@@ -1,4 +1,3 @@
-/*global Event */
 App.Event = DS.Model.extend({
   summary: DS.attr('string'),
   description: DS.attr('string'),
@@ -6,6 +5,8 @@ App.Event = DS.Model.extend({
   endsAt: DS.attr('date'),
   allDay: DS.attr('boolean'),
   important: DS.attr('boolean'),
+  calendar: DS.belongsTo('App.Calendar'),
+
   // url: DS.attr('string', {
   //   readOnly: true
   // }),
@@ -36,7 +37,13 @@ App.Event = DS.Model.extend({
   // }
 });
 
+App.ramdomDay = function(maxDaysFromToday) {
+  var daysFromToday = Math.floor(((Math.random() * 2 * maxDaysFromToday) + 1) - maxDaysFromToday);
+  return moment().add('days', daysFromToday);
+}
+
 App.Event.FIXTURES = [
-    {id: 1, summary: 'Event A', startsAt: new Date() },
-    {id: 2, summary: 'Event B', startsAt: new Date() }
+    {id: 1, summary: 'Meeting', startsAt: App.ramdomDay(7), calendar: 1 },
+    {id: 2, summary: 'Party', startsAt: App.ramdomDay(7), calendar: 2 },
+    {id: 3, summary: 'Meeting', startsAt: App.ramdomDay(7), calendar: 1 },
 ];

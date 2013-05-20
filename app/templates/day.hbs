@@ -4,22 +4,4 @@
   {{#each event in events}}
     {{view App.EventView contentBinding="event"}}
   {{/each}}
-
-  {{#if weekDay.otherEvents}}
-    <div class='toggle hide'>
-      {{#each event in weekDay.otherEvents}}
-        {{view App.EventView contentBinding="event"}}
-      {{/each}}
-    </div>
-
-    <div class='toggle-buttons center'>
-      <a {{action "toggle" weekDay}} href='#' class="btn btn-info btn-tiny toggle inline">
-        <i class="icon-angle-down icon-white"></i> More
-      </a>
-      <a {{action "toggle" weekDay}} href='#' class="btn btn-info btn-tiny toggle hide">
-        <i class="icon-angle-up icon-white"></i> Less
-      </a>
-    </div>
-  {{/if}}
-
 </div>

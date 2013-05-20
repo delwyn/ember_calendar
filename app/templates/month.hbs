@@ -21,10 +21,12 @@
   <section>
     <div class="span12">
       <ul class="inline">
-      {{#each eventTypes}}
+      {{#each calendars}}
         <li>
         <label class='checkbox inline'>
-          {{#view App.EventTypeFilterCheckbox contentBinding="this" checked="true"}} {{ name }} {{/view}}
+          {{#view App.CalendarFilterCheckbox contentBinding="this" checked="true"}}
+            {{ name }}
+          {{/view}}
         </label>
       </li>
       {{/each}}

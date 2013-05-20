@@ -1,7 +1,7 @@
 App.EventView = Em.View.extend(DragNDrop.Dragable, {
-  classNames: ['cal-event'],
   attributeBindings: ['style'],
-  templateName: 'event'
+  classNames: ['cal-event'],
+  templateName: 'event',
 
   // draggable: (function() {
   //   if (App.currentUser.get('internal')) {
@@ -15,13 +15,13 @@ App.EventView = Em.View.extend(DragNDrop.Dragable, {
   //   return window.location.href = this.content.get('url') + '?sender=' + window.location.pathname;
   // },
 
-  // style: (function() {
-  //   var color;
-  //   color = this.get('content').get('color');
-  //   if (color) {
-  //     return 'background-color:' + color;
-  //   } else {
-  //     return false;
-  //   }
-  // }).property('content.color')
+  style: (function() {
+    var color = this.get('content.calendar.color');
+
+    if (color) {
+      return 'background-color:' + color;
+    } else {
+      return false;
+    }
+  }).property('content.calendar.color')
 });

@@ -1,5 +1,23 @@
 App.MonthController = Ember.Controller.extend({
   weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+  allEvents: null,
+  calendars: null,
+
+  events: (function() {
+    var filters = this.get('filters');
+
+    if (!this.get('calendars').get('isLoaded')) {
+      return this.get('allEvents');
+    }
+
+    return this.get('allEvents').filter(function(item, index) {
+      return ~filters.indexOf(item.get('calendar.id'));
+    });
+  }).property('allEvents.@each', 'filters.@each'),
+
+  filters: (function() {
+    return this.calendars.mapProperty('id');
+  }).property('calendars.@each'),
 
   title: function() {
     return moment(this.date).format('MMMM YYYY');

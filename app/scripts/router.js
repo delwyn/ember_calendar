@@ -19,6 +19,7 @@ App.MonthRoute = Ember.Route.extend({
 
   setupController: function(controller, model) {
     controller.set('date', moment(model, 'YYYY-MM'));
-    controller.set('events', App.Event.find());
+    controller.set('calendars', App.Calendar.find());
+    controller.set('allEvents', App.Event.find());
   }
 });
