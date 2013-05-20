@@ -13,7 +13,7 @@ App.MonthController = Ember.Controller.extend({
     return this.get('allEvents').filter(function(item, index) {
       return ~filters.indexOf(item.get('calendar.id'));
     });
-  }).property('allEvents.@each', 'filters.@each'),
+  }).property('allEvents.@each.startsAt', 'filters.@each'),
 
   filters: (function() {
     return this.calendars.mapProperty('id');

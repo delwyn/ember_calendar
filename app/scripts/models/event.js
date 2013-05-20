@@ -3,22 +3,16 @@ App.Event = DS.Model.extend({
   description: DS.attr('string'),
   startsAt: DS.attr('date'),
   endsAt: DS.attr('date'),
-  allDay: DS.attr('boolean'),
-  important: DS.attr('boolean'),
+  // allDay: DS.attr('boolean'),
+  // important: DS.attr('boolean'),
   calendar: DS.belongsTo('App.Calendar'),
 
-  // url: DS.attr('string', {
-  //   readOnly: true
-  // }),
-  // color: DS.attr('string', {
-  //   readOnly: true
-  // }),
-  // eventType: DS.belongsTo('App.EventType'),
   date: function() {
     if (this.get('startsAt')) {
       return moment(this.get('startsAt')).format('YYYY-MM-DD');
     }
-  }.property('startsAt')
+  }.property('startsAt'),
+
   // icon: (function() {
   //   if (this.get('important')) {
   //     return "<i class='icon-flag icon-white'></i>";
@@ -26,15 +20,20 @@ App.Event = DS.Model.extend({
   //     return '';
   //   }
   // }).property('important'),
-  // changeDate: function(date) {
-  //   var d, m, y, _ref;
-  //   _ref = [date.year(), date.month(), date.date()], y = _ref[0], m = _ref[1], d = _ref[2];
-  //   this.set('startsAt', new Date(moment(this.get('startsAt')).year(y).month(m).date(d)));
-  //   if (this.get('endsAt')) {
-  //     this.set('endsAt', new Date(moment(this.get('endsAt')).year(y).month(m).date(d)));
-  //   }
-  //   return this.store.commit();
-  // }
+
+  changeDate: function(date) {
+    var d = date.date(),
+        m = date.month(),
+        y = date.year();
+
+    this.set('startsAt', moment(this.get('startsAt')).year(y).month(m).date(d).toDate());
+
+    if (this.get('endsAt')) {
+      this.set('endsAt', moment(this.get('endsAt')).year(y).month(m).date(d).toDate());
+    }
+
+    this.store.commit();
+  }
 });
 
 App.ramdomDay = function(maxDaysFromToday) {
