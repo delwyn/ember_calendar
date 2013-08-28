@@ -1,3 +1,3 @@
-App.Day = Ember.Object.extend({
+Calendar.Day = Ember.Object.extend({
     date: null
 });

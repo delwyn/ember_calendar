@@ -1,6 +1,6 @@
 {
     "node": true,
-    "es5": true,
+    "browser": true,
     "esnext": true,
     "bitwise": false,
     "curly": false,
@@ -12,13 +12,15 @@
     "noarg": true,
     "undef": true,
     "strict": false,
-    "trailing": true,
+    "trailing": false,
     "smarttabs": true,
     "globals": {
-        "Ember": false,
-        "Em": false,
-        "DS": false,
-        "App": false,
-        "moment": false
+        "Calendar": true,
+        "jQuery": true,
+        "Ember": true,
+        "Em": true,
+        "Handlebars": true,
+        "DS": true,
+        "moment": true
     }
 }

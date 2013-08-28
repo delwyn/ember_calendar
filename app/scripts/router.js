@@ -1,25 +1,25 @@
-App.Router.reopen({
+Calendar.Router.reopen({
   // location: 'history'
 });
 
-App.Router.map(function() {
+Calendar.Router.map(function() {
   this.route('month', { path: 'month/:date' });
 });
 
-App.IndexRoute = Ember.Route.extend({
+Calendar.IndexRoute = Ember.Route.extend({
   redirect: function() {
     this.transitionTo('month', moment().format('YYYY-MM'));
   }
 });
 
-App.MonthRoute = Ember.Route.extend({
+Calendar.MonthRoute = Ember.Route.extend({
   model: function(params) {
     return params.date;
   },
 
   setupController: function(controller, model) {
     controller.set('date', moment(model, 'YYYY-MM'));
-    controller.set('calendars', App.Calendar.find());
-    controller.set('allEvents', App.Event.find());
+    controller.set('calendars', Calendar.Calendar.find());
+    controller.set('allEvents', Calendar.Event.find());
   }
 });

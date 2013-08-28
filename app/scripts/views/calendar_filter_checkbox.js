@@ -1,4 +1,4 @@
-App.CalendarFilterCheckbox = Em.Checkbox.extend({
+Calendar.CalendarFilterCheckbox = Em.Checkbox.extend({
   selectedBinding: 'controller.filters',
 
   click: function(e) {

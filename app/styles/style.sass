@@ -1,7 +1,17 @@
-$iconSpritePath: "../images/glyphicons-halflings.png"
-$iconWhiteSpritePath: "../images/glyphicons-halflings-white.png"
+$icon-font-path: '/bower_components/bootstrap-sass/fonts/'
+$icon-font-name: 'glyphicons-halflings-regular'
 
-@import 'sass-bootstrap/lib/bootstrap'
+@import 'bootstrap-sass/lib/bootstrap'
+
+@mixin border-radius($radius)
+  @include border-top-radius($radius)
+  @include border-bottom-radius($radius)
+
+
+
+body
+  padding-top: 80px
+
 
 [draggable], [draggable] a
   cursor: pointer
@@ -10,10 +20,8 @@ $iconWhiteSpritePath: "../images/glyphicons-halflings-white.png"
   -webkit-user-select: none
   user-select: none
 
-.btn-tiny
-  padding: 1px 4px
-  font-size: 10px
-  line-height: 15px
+.center
+  text-align: center
 
 .calendar
   font-size: 11px
@@ -54,11 +62,11 @@ $iconWhiteSpritePath: "../images/glyphicons-halflings-white.png"
     background: #36c
     @include border-radius(3px)
 
-  .is-today
-    background-color: rgba(255, 255, 192, 0.65)
-
   .is-weekend
     background-color: rgba(245, 245, 245, 0.65)
+
+  .is-today
+    background-color: rgba(255, 255, 192, 0.65)
 
   .dropTarget
     background-color: rgba(202, 230, 255, 0.65)

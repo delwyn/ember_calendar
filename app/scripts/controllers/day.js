@@ -1,4 +1,4 @@
-App.DayController = Ember.Object.extend({
+Calendar.DayController = Ember.Object.extend({
   monthEventsBinding: 'target.events',
 
   events: function() {

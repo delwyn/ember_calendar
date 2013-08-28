@@ -1,6 +1,7 @@
-// Generated on 2013-05-15 using generator-ember 0.2.4
+// Generated on 2013-08-28 using generator-ember 0.6.2
 'use strict';
-var lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
+var LIVERELOAD_PORT = 35729;
+var lrSnippet = require('connect-livereload')({port: LIVERELOAD_PORT});
 var mountFolder = function (connect, dir) {
     return connect.static(require('path').resolve(dir));
 };
@@ -12,8 +13,10 @@ var mountFolder = function (connect, dir) {
 // 'test/spec/**/*.js'
 
 module.exports = function (grunt) {
+    // show elapsed time at the end
+    require('time-grunt')(grunt);
     // load all grunt tasks
-    require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+    require('load-grunt-tasks')(grunt);
 
     // configurable paths
     var yeomanConfig = {
@@ -24,9 +27,9 @@ module.exports = function (grunt) {
     grunt.initConfig({
         yeoman: yeomanConfig,
         watch: {
-            ember_templates: {
-              files: '<%= yeoman.app %>/templates/**/*.hbs',
-              tasks: ['ember_templates', 'livereload']
+            emberTemplates: {
+                files: '<%= yeoman.app %>/templates/**/*.hbs',
+                tasks: ['emberTemplates']
             },
             coffee: {
                 files: ['<%= yeoman.app %>/scripts/{,*/}*.coffee'],
@@ -40,21 +43,27 @@ module.exports = function (grunt) {
                 files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
                 tasks: ['compass:server']
             },
+            neuter: {
+                files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+                tasks: ['neuter']
+            },
             livereload: {
+                options: {
+                    livereload: LIVERELOAD_PORT
+                },
                 files: [
+                    '.tmp/scripts/*.js',
                     '<%= yeoman.app %>/*.html',
                     '{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css',
-                    '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
                     '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
-                ],
-                tasks: ['livereload']
+                ]
             }
         },
         connect: {
             options: {
                 port: 9000,
                 // change this to '0.0.0.0' to access the server from outside
-                hostname: '0.0.0.0'
+                hostname: 'localhost'
             },
             livereload: {
                 options: {
@@ -62,7 +71,7 @@ module.exports = function (grunt) {
                         return [
                             lrSnippet,
                             mountFolder(connect, '.tmp'),
-                            mountFolder(connect, 'app')
+                            mountFolder(connect, yeomanConfig.app)
                         ];
                     }
                 }
@@ -81,7 +90,7 @@ module.exports = function (grunt) {
                 options: {
                     middleware: function (connect) {
                         return [
-                            mountFolder(connect, 'dist')
+                            mountFolder(connect, yeomanConfig.dist)
                         ];
                     }
                 }
@@ -148,11 +157,15 @@ module.exports = function (grunt) {
             options: {
                 sassDir: '<%= yeoman.app %>/styles',
                 cssDir: '.tmp/styles',
+                generatedImagesDir: '.tmp/images/generated',
                 imagesDir: '<%= yeoman.app %>/images',
                 javascriptsDir: '<%= yeoman.app %>/scripts',
                 fontsDir: '<%= yeoman.app %>/styles/fonts',
-                importPath: 'app/components',
-                relativeAssets: true
+                importPath: 'app/bower_components',
+                httpImagesPath: '/images',
+                httpGeneratedImagesPath: '/images/generated',
+                httpFontsPath: '/styles/fonts',
+                relativeAssets: false
             },
             dist: {},
             server: {
@@ -267,16 +280,17 @@ module.exports = function (grunt) {
         },
         concurrent: {
             server: [
-                'ember_templates',
+                'emberTemplates',
                 'coffee:dist',
                 'compass:server'
             ],
             test: [
+                'emberTemplates',
                 'coffee',
                 'compass'
             ],
             dist: [
-                'ember_templates',
+                'emberTemplates',
                 'coffee',
                 'compass:dist',
                 'imagemin',
@@ -284,7 +298,12 @@ module.exports = function (grunt) {
                 'htmlmin'
             ]
         },
-        ember_templates: {
+        karma: {
+            unit: {
+                configFile: 'karma.conf.js'
+            }
+        },
+        emberTemplates: {
             options: {
                 templateName: function (sourceFile) {
                     var templatePath = yeomanConfig.app + '/templates/';
@@ -296,11 +315,19 @@ module.exports = function (grunt) {
                     '.tmp/scripts/compiled-templates.js': '<%= yeoman.app %>/templates/{,*/}*.hbs'
                 }
             }
+        },
+        neuter: {
+            app: {
+                options: {
+                    filepathTransform: function (filepath) {
+                        return 'app/' + filepath;
+                    }
+                },
+                src: '<%= yeoman.app %>/scripts/app.js',
+                dest: '.tmp/scripts/combined-scripts.js'
+            }
         }
-
     });
-
-    grunt.renameTask('regarde', 'watch');
 
     grunt.registerTask('server', function (target) {
         if (target === 'dist') {
@@ -310,7 +337,7 @@ module.exports = function (grunt) {
         grunt.task.run([
             'clean:server',
             'concurrent:server',
-            'livereload-start',
+            'neuter:app',
             'connect:livereload',
             'open',
             'watch'
@@ -321,6 +348,7 @@ module.exports = function (grunt) {
         'clean:server',
         'concurrent:test',
         'connect:test',
+        'neuter:app',
         'mocha'
     ]);
 
@@ -328,8 +356,9 @@ module.exports = function (grunt) {
         'clean:dist',
         'useminPrepare',
         'concurrent:dist',
-        'cssmin',
+        'neuter:app',
         'concat',
+        'cssmin',
         'uglify',
         'copy',
         'rev',

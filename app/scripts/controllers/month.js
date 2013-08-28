@@ -1,4 +1,4 @@
-App.MonthController = Ember.Controller.extend({
+Calendar.MonthController = Ember.Controller.extend({
   weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
   allEvents: null,
   calendars: null,
@@ -25,7 +25,7 @@ App.MonthController = Ember.Controller.extend({
 
   days: function() {
     return this.get('range').map(function(date) {
-      return App.Day.create({ date: date });
+      return Calendar.Day.create({ date: date });
     });
   }.property('date'),
 

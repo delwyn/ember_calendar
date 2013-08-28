@@ -1,4 +1,4 @@
-App.EventView = Em.View.extend(DragNDrop.Dragable, {
+Calendar.EventView = Em.View.extend(DragNDrop.Dragable, {
   attributeBindings: ['style'],
   classNames: ['cal-event'],
   templateName: 'event',

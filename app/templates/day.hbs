@@ -2,6 +2,6 @@
   <div class='day'>{{ dayOfMonth }}</div>
 
   {{#each event in events}}
-    {{view App.EventView contentBinding="event"}}
+    {{view Calendar.EventView contentBinding="event"}}
   {{/each}}
 </div>

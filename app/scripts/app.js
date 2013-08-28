@@ -1,5 +1,10 @@
-/*global Ember */
+var Calendar = window.Calendar = Ember.Application.create();
 
-(function (window) {
-  var App = window.App = Ember.Application.create();
-})(this);
+/* Order and include as you please. */
+require('scripts/main');
+require('scripts/controllers/*');
+require('scripts/store');
+require('scripts/models/*');
+require('scripts/routes/*');
+require('scripts/views/*');
+require('scripts/router');

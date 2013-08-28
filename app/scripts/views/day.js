@@ -1,4 +1,4 @@
-App.DayView = Em.View.extend(DragNDrop.Droppable, {
+Calendar.DayView = Em.View.extend(DragNDrop.Droppable, {
   tagName: 'td',
   classNames: ['date'],
   classNameBindings: ['isToday', 'isWeekend'],

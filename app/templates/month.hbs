@@ -1,60 +1,60 @@
-<div class='calendar span12'>
-  <header>
-    <div class="span4">
-      <nav>
+<div class='calendar row'>
+  <div class='col-md-12'>
+    
+    <div class="row">
+      <div class="col-md-4">
         <div class="btn-toolbar navigation-buttons">
           <div class="btn-group">
-            <button {{action "previousMonth"}} class="btn btn-mini"><i class="icon-arrow-left" ></i></button>
-            <button {{action "nextMonth"}}     class="btn btn-mini"><i class="icon-arrow-right"></i></button>
+            <button {{action "previousMonth"}} class="btn btn-default btn-xs"><i class="glyphicon glyphicon-arrow-left" ></i></button>
+            <button {{action "nextMonth"}}     class="btn btn-default btn-xs"><i class="glyphicon glyphicon-arrow-right"></i></button>
           </div>
-          <button {{action "today"}}class="btn btn-mini"><i class='icon-calendar'></i> Today</button>
-
+          <button {{action "today"}}class="btn btn-default btn-xs"><i class='glyphicon glyphicon-calendar'></i> Today</button>
         </div>
-      </nav>
+      </div>
+    
+      <div class="col-md-4 center">
+        <h2>{{ title }}</h2>
+      </div>
     </div>
 
-    <div class="span8 center">
-      <h2>{{ title }}</h2>
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="list-inline">
+        {{#each calendars}}
+          <li>
+          <label class='checkbox inline'>
+            {{#view Calendar.CalendarFilterCheckbox contentBinding="this" checked="true"}}
+              {{ name }}
+            {{/view}}
+          </label>
+        </li>
+        {{/each}}
+        </ul>
+      </div>
     </div>
-  </header>
 
-  <section>
-    <div class="span12">
-      <ul class="inline">
-      {{#each calendars}}
-        <li>
-        <label class='checkbox inline'>
-          {{#view App.CalendarFilterCheckbox contentBinding="this" checked="true"}}
-            {{ name }}
-          {{/view}}
-        </label>
-      </li>
-      {{/each}}
-      </ul>
-    </div>
-  </section>
-
-  <section>
-    <div class="span12">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            {{#each day in weekdays}}
-              <th>{{ day }}</th>
-            {{/each}}
-          </tr>
-        </thead>
-        <tbody>
-          {{#each week in weeks}}
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-bordered">
+          <thead>
             <tr>
-              {{#each day in week}}
-                {{render "day" day}}
+              {{#each day in weekdays}}
+                <th>{{ day }}</th>
               {{/each}}
             </tr>
-          {{/each}}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {{#each week in weeks}}
+              <tr>
+                {{#each day in week}}
+                  {{render "day" day}}
+                {{/each}}
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
     </div>
-  </section>
 
+  </div>
 </div>
