@@ -1,60 +1,55 @@
-<div class='calendar row'>
-  <div class='col-md-12'>
-    
-    <div class="row">
-      <div class="col-md-4">
-        <div class="btn-toolbar navigation-buttons">
-          <div class="btn-group">
-            <button {{action "previousMonth"}} class="btn btn-default btn-xs"><i class="glyphicon glyphicon-arrow-left" ></i></button>
-            <button {{action "nextMonth"}}     class="btn btn-default btn-xs"><i class="glyphicon glyphicon-arrow-right"></i></button>
-          </div>
-          <button {{action "today"}}class="btn btn-default btn-xs"><i class='glyphicon glyphicon-calendar'></i> Today</button>
-        </div>
+<div class="row">
+  <div class="col-md-4">
+    <div class="btn-toolbar navigation-buttons">
+      <div class="btn-group">
+        <button {{action "previousMonth"}} class="btn btn-default btn-xs"><i class="glyphicon glyphicon-arrow-left" ></i></button>
+        <button {{action "nextMonth"}}     class="btn btn-default btn-xs"><i class="glyphicon glyphicon-arrow-right"></i></button>
       </div>
-    
-      <div class="col-md-4 center">
-        <h2>{{ title }}</h2>
-      </div>
+      <button {{action "today"}}class="btn btn-default btn-xs"><i class='glyphicon glyphicon-calendar'></i> Today</button>
     </div>
+  </div>
 
-    <div class="row">
-      <div class="col-md-12">
-        <ul class="list-inline">
-        {{#each calendars}}
-          <li>
-          <label class='checkbox inline'>
-            {{#view Calendar.CalendarFilterCheckbox contentBinding="this" checked="true"}}
-              {{ name }}
-            {{/view}}
-          </label>
-        </li>
-        {{/each}}
-        </ul>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-12">
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              {{#each day in weekdays}}
-                <th>{{ day }}</th>
-              {{/each}}
-            </tr>
-          </thead>
-          <tbody>
-            {{#each week in weeks}}
-              <tr>
-                {{#each day in week}}
-                  {{render "day" day}}
-                {{/each}}
-              </tr>
-            {{/each}}
-          </tbody>
-        </table>
-      </div>
-    </div>
-
+  <div class="col-md-4 center">
+    <h2>{{ title }}</h2>
   </div>
 </div>
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-inline">
+    {{#each calendars}}
+      <li>
+      <label class='checkbox inline'>
+        {{#view Calendar.CalendarFilterCheckbox contentBinding="this" checked="true"}}
+          {{ name }}
+        {{/view}}
+      </label>
+    </li>
+    {{/each}}
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          {{#each day in weekdays}}
+            <th>{{ day }}</th>
+          {{/each}}
+        </tr>
+      </thead>
+      <tbody>
+        {{#each week in weeks}}
+          <tr>
+            {{#each day in week}}
+              {{render "day" day}}
+            {{/each}}
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+
